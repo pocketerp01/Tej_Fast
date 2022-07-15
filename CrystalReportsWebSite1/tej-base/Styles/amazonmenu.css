@@ -1,0 +1,91 @@
+﻿.v1 {
+    margin: 0 0 1px 6px;
+    color: #7d8487;
+    max-width: 270px;
+    text-wrap: normal;
+}
+
+.wrap1 {
+    position: relative;
+}
+
+.amazonmenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 22px 0 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+    .amazonmenu ul li {
+        position: static;
+    }
+
+.amazonmenu > ul, .amazonmenu > ul li a {
+    position: relative;
+    text-wrap: normal;
+    background-image: linear-gradient(to right,#e8ebeb,#F9F9F9);
+}
+
+.amazonmenu > ul {
+    border: 1px solid #aab7b7;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px #60686b;
+    width: 275px;
+    min-height: 600px;
+    padding: 7px 22px 0 5px;
+}
+
+    .amazonmenu > ul li a {
+        display: block;
+        overflow: auto;
+        padding: 7px 0 7px 6px;
+        text-decoration: none;
+        text-indent: 0;
+        color: #000;
+    }
+
+    .amazonmenu > ul li.hassub > a::after {
+        border: 5px solid transparent;
+        content: '';
+        height: 0;
+        position: absolute;
+        right: 5px;
+        top: 35%;
+        width: 0;
+        border-left-color: #505a5f;
+        text-wrap: normal;
+    }
+
+.amazonmenu ul li a:hover {
+    color: #fff;
+    border-left-color: #fff;    
+    background-image: linear-gradient(to right,#d65608,#d65608);
+}
+
+.amazonmenu ul li > div, .amazonmenu ul li > ul {
+    position: absolute;
+    top: -2px;
+    background-image: linear-gradient(to right,#e8ebeb,#F9F9F9);
+    border: 1px groove #aab7b7;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px #60686b;
+    display: none;
+    padding: 7px 0 6px;
+    width: 300px;
+    height: 600px;
+    left: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+/* ###### CSS Media queries ###### */
+
+@media only screen and (max-width:768px) { /* When screen size is 480px */
+}

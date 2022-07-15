@@ -1,0 +1,318 @@
+﻿.grdrow, .grdrow:hover {
+    width: auto;
+    color: #0a5e7e;
+    font-family: Arial,Helvetica,sans-serif;
+    padding-left: 5px;
+    border-right: 1px solid #9abbe1;
+    border-bottom: 1px solid #9abbe1;
+    cursor: pointer;
+}
+
+.txtcss2:focus, .txtsrch:focus {
+    outline-color: #54b4ad;
+}
+
+.grdrow {
+    font-weight: 400;
+}
+
+    .grdrow:hover {
+        background: #fbf6d9;
+        margin: 10px;
+        cursor: pointer;
+    }
+
+.btnno, .btnshine, .btnyes {
+    color: #fff;
+    text-shadow: 0 -1px 1px #751d0c;
+}
+
+.btnshine {
+    background-color: #e94f31;
+    font-weight: 700;
+}
+
+    .btnshine:hover {
+        position: relative;
+        background-color: #ba2f14;
+        cursor: pointer;
+        top: 1px;
+    }
+
+.txtcss2 {
+    padding: 5px 2px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+.btnyes {
+    border: 1px solid #a1dcf2;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #0bb71e;
+    font-weight: 700;
+}
+
+.btnno, .rounded_corners {
+    border: 1px solid #a1dcf2;
+    overflow: hidden;
+}
+
+.btnyes:hover {
+    background-color: #0be023;
+    position: relative;
+    cursor: pointer;
+}
+
+.btnno {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    background-color: #e42217;
+    font-weight: 700;
+}
+
+.trv_node:hover, .trv_selected {
+    color: #000;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btnno:hover {
+    background-color: #f62217;
+    position: relative;
+    cursor: pointer;
+}
+
+.btnok {
+    border: 1px solid #a1dcf2;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #157dec;
+    font-weight: 700;
+}
+
+.btnok:hover {
+    background-color: #5fa7f5;
+    position: relative;
+    cursor: pointer;
+}
+
+#updprocess {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url(../Images/overlay.png) center center #e4e4e6;
+    opacity: .9;
+    overflow: hidden;
+}
+
+.trv_node:hover {
+    background: #fbf6d9;
+}
+
+.trv_selected {
+    text-decoration: underline;
+}
+
+.font_css, .font_css1 {
+    color: #474646;
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+.nav-top ul li a, .pan {
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.font_css {
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.font_css1 {
+    font-weight: 700;
+    font-size: 6px;
+}
+
+.myButton {
+    border: 1px solid #456f9a;
+    background: #5e87b0;
+    color: #fff;
+    background-image: -gradient(linear,left top,left bottom,from(#6facd5),to(#497bae));
+    border-radius: 4px;
+    width: 100px;
+    height: 24px;
+    cursor: pointer;
+}
+
+    .myButton:hover {
+        opacity: .9;
+    }
+
+    .myButton:disabled {
+        opacity: .5;
+        cursor: inherit;
+    }
+
+.clearable.onX, .pan:hover {
+    cursor: pointer;
+}
+
+.header {
+    height: 25px;
+    background: #414246;
+    margin: 0 auto;
+    font-size: large;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    border: 2px solid #f2f5ff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.clearable {
+    background: url(../images/cross-red.gif) right -12px center no-repeat #fff;
+    padding: 0;
+    transition: background .4s;
+}
+
+    .clearable.x {
+        background-position: right 4px center;
+    }
+
+.rounded_corners {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+    .rounded_corners td, .rounded_corners th {
+        border: 1px solid #a1dcf2;
+        font-family: Arial;
+        font-size: 10pt;
+    }
+
+    .rounded_corners table table td {
+        border-style: none;
+    }
+
+.txtsrch {
+    background: url(../images/txtsrch2.jpg) no-repeat;
+    background-position: 5px !important;
+    padding: 5px 1px 5px 30px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+.nav-top, .top-menu {
+    height: 33px;
+    padding: 0;
+    float: right;
+}
+
+.txtsrch:focus {
+    background-color: #fff;
+}
+
+.top-menu {
+    width: 518px;
+    margin: 13px 0 0;
+    color: #000;
+}
+
+.nav-top {
+    width: 517px;
+    margin: 0;
+    background: url(../Images/bg.png) no-repeat;
+}
+
+    .nav-top ul {
+        list-style: none;
+    }
+
+        .nav-top ul li {
+            display: inline;
+        }
+
+            .nav-top ul li a {
+                height: 27px;
+                margin: 0 0 0 15px;
+                padding: 9px 16px 0 14px;
+                float: left;
+                font-family: Arial;
+                color: #000;
+                background: 0 0;
+            }
+
+                .nav-top ul li a:hover {
+                    color: #fff;
+                    background: url(../Images/lava1.gif) no-repeat;
+                    cursor: pointer;
+                }
+
+                .nav-top ul li a .new {
+                    margin: -9px 0 0 -10px;
+                    padding: 7px 0 0 8px;
+                    color: #fff;
+                    background: url(../images/redbg.gif) no-repeat;
+                    float: left;
+                    height: 33px;
+                }
+
+.header-grey {
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    padding: 0;
+    background: #414246;
+}
+
+#header-inside-use {
+    width: 95%;
+    height: 60px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.dmrc-logo1 {
+    width: 275px;
+    height: 73px;
+    margin: -26px 0 0;
+    padding: 0;
+    float: left;
+    background: url(../Images/logo_left.gif) no-repeat;
+}
+
+.logo-top {
+    margin: 0 0 0 14px;
+    padding: 0;
+    width: 230px;
+    height: 43px;
+    float: left;
+}
+
+.pan {
+    height: 27px;
+    margin: 0 0 0 15px;
+    padding: 9px 0 0 5px;
+    float: left;
+    font-family: Arial;
+    color: #000;
+    background: 0 0;
+}
+
+    .pan:hover {
+        color: #fff;
+        background: url(../Images/lava1.gif) no-repeat;
+    }
