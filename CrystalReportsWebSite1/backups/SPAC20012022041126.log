@@ -1,0 +1,96 @@
+
+Connected to: Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+Export done in WE8MSWIN1252 character set and AL16UTF16 NCHAR character set
+server uses AL32UTF8 character set (possible charset conversion)
+
+About to export specified users ...
+. exporting pre-schema procedural objects and actions
+. exporting foreign function library names for user PDSPAC 
+. exporting PUBLIC type synonyms
+. exporting private type synonyms
+. exporting object type definitions for user PDSPAC 
+About to export PDSPAC's objects ...
+. exporting database links
+. exporting sequence numbers
+. exporting cluster definitions
+. about to export PDSPAC's tables via Conventional Path ...
+. . exporting table                             CO          1 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                   COSTINGITEMS          4 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                     DBD_CONFIG        187 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                  DBD_MW_CONFIG          0 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                  DBD_TV_CONFIG          0 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                     DSK_CONFIG       8774 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                           EVAS          4 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                          FAMST        608 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                       FAMSTBAL        344 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                        FININFO        129 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                      FIN_MRSYS       1409 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                       FIN_MSYS       1633 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                       FIN_RSYS          0 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                   FIN_RSYS_UPD        115 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                           ITEM       1844 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                        ITEMBAL       1560 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                     OPERATIONS         30 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                      OVERHEADS         24 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                     REP_CONFIG        732 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                      SOMAS_ANX          0 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                     SYS_CONFIG       5853 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                     TBLCOSTING          4 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                         TBLRFQ          5 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                    TBL_MACHINE          1 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                           TYPE        385 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                        TYPEGRP        890 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                     UDF_CONFIG          0 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                       UDF_DATA          0 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                   WB_FILE_ATCH         14 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                    WB_LEAD_LOG          0 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                       WSR_CTRL         17 rows exported
+EXP-00091: Exporting questionable statistics.
+. exporting synonyms
+. exporting views
+. exporting stored procedures
+. exporting operators
+. exporting referential integrity constraints
+. exporting triggers
+. exporting indextypes
+. exporting bitmap, functional and extensible indexes
+. exporting posttables actions
+. exporting materialized views
+. exporting snapshot logs
+. exporting job queues
+. exporting refresh groups and children
+. exporting dimensions
+. exporting post-schema procedural objects and actions
+. exporting statistics
+Export terminated successfully with warnings.

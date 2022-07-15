@@ -1,0 +1,420 @@
+﻿<%@ Master Language="C#" AutoEventWireup="True" Inherits="fin_base_Pocket" CodeFile="Fin_Master2.master.cs" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tejaxo ERP</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="../theme/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="../theme/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="../theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="../theme/plugins/jqvmap/jqvmap.min.css">
+    <link rel="stylesheet" href="../theme/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="../theme/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="../theme/plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="../theme/plugins/summernote/summernote-bs4.min.css">
+    <link href="../tej-base/Scripts/colorbox.css" type="text/css" rel="Stylesheet" />
+    <link href="../tej-base/css/GridviewScroll.css" type="text/css" rel="Stylesheet" />
+    <link href="../tej-base/css/GridviewScroll2.css" type="text/css" rel="Stylesheet" />
+
+    <%--<link href="../tej-base/css/timeout-dialog.css" rel="stylesheet" />--%>
+
+    <%--<script src="../theme/plugins/jquery/jquery.min.js"></script>
+<script src="../theme/plugins/jquery-ui/jquery-ui.min.js"></script>--%>
+    <link rel="stylesheet" href="../tej-base/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../tej-base/dist/css/AdminLTE.min.css" />
+    <link rel="stylesheet" href="../tej-base/dist/css/skins/_all-skins.min.css" />
+    <%--<script src="../tej-base/Scripts/timeout-dialog.js"></script>--%>
+
+    <script src="../tej-base/Scripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="../tej-base/Scripts/jquery.colorbox-min.js" type="text/javascript"></script>
+    <script src="../tej-base/Scripts/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="../tej-base/Scripts/temp.js" type="text/javascript"></script>
+    <script src="../theme/dist/js/adminlte.js"></script>
+
+    <link href="../tej-base/Scripts/colorbox.css" type="text/css" rel="Stylesheet" />
+    <link href="../tej-base/css/GridviewScroll.css" type="text/css" rel="Stylesheet" />
+    <link href="../tej-base/css/GridviewScroll2.css" type="text/css" rel="Stylesheet" />
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <script src="../tej-base/Scripts/temp.js" type="text/javascript"></script>
+    <script src="../js/CoolCore.js"></script>
+    <script src="../js/CoolGridView.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style>
+        .main-footer, body:not(.sidebar-mini-md) .main-header {
+            transition: margin-left .3s ease-in-out;
+            margin-left: 20px;
+        }
+
+        .main-sidebar, .main-sidebar::before {
+            width: 20px;
+        }
+
+        .layout-fixed .brand-link {
+            width: 20px;
+        }
+
+        .btn-info:hover, .btn-info:focus, .btn-info.disabled {
+            color: #fff;
+            background-color: #1379ad;
+            border-color: #1379ad;
+        }
+
+        input[type=text], select, input[type=date], date, textarea {
+            border-bottom: 1px solid;
+            border-top: 0px;
+            border-left: 0px;
+            border-right: 0px;
+            padding-left: 5px;
+            border-radius: 0px;
+            outline: none;
+            border-bottom-color: #1379ad;
+        }
+
+        button[type=submit] {
+            border: 0px solid;
+            border-radius: 2px;
+        }
+
+        .bg-green, .btn-info, button[type=submit] {
+            background-color: #1379ad;
+        }
+
+        .main-header, .skin-blue .main-header .navbar {
+            background: linear-gradient(to left, #1CB5E0, #000046);
+        }
+
+        .GridviewScrollHeader th, .GridviewScrollHeader2 th {
+            background-color: GHOSTWHITE;
+            color: #1379ad;
+        }
+
+        .content-wrapper {
+            background-color: GHOSTWHITE;
+        }
+
+        body, th {
+            font-family: monospace !important;
+        }
+
+        input {
+            font-size: inherit !important;
+        }
+    </style>
+</head>
+
+<body class="hold-transition layout-fixed sidebar-collapse">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-dark">
+            <!-- Left navbar links -->
+            <%--<ul class="navbar-nav">--%>
+            <%--<li class="nav-item" style="visibility:hidden">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>--%>
+            <%-- <li class="nav-item d-none d-sm-inline-block">
+        <a href="index3.html" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>--%>
+            <%-- </ul>--%>
+
+            <!-- SEARCH FORM -->
+            <div class="form-inline ml-3">
+                <div class="input-group input-group-sm">
+                    <asp:Image ID="imglogo2" class="logo_finsys" ImageUrl="~/tej-base/images/t_logo_w.png" AlternateText="erp logo" runat="server" Style="max-height: 50px; max-width: 180px" />
+                </div>
+            </div>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto" style="align-items: inherit">
+                <li class="dropdown user user-menu" style="margin-right: 30px">
+                    <span class="hidden-xs" runat="server" id="txtcompname" style="color: white">..</span>
+                </li>
+                <li class="nav-item" style="margin-right: 5px">
+                    <a href="#">
+                        <%--<img src="../tej-base/images/logo_s_w.png" class="user-image" alt="User Image" style="max-width:30px">--%>
+                        <i class="fas fa-user-circle" aria-hidden="true" style="color: white"></i>
+                        <span class="hidden-xs" runat="server" id="lblusername" style="color: white">Username</span>
+                    </a>
+                </li>
+                <li class="nav-item" style="padding-bottom: 15px;">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a class="brand-link">
+                <img src="../theme/dist/img/AdminLTELogo.png" alt="Tejaxo Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Tejaxo ERP</span>
+                <i class="fas fa-expand fa-fw" style="float: right;" onclick="expclick();"></i>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2" runat="server" id="navmenu">
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+        <form runat="server" style="margin-left: 10px; margin-right: 10px">
+            <asp:ScriptManager ID="upd1" runat="server" EnableCdn="true" LoadScriptsBeforeUI="true"></asp:ScriptManager>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <%--      <asp:HiddenField ID="hfval" runat="server" />
+            <asp:HiddenField ID="hfM1" runat="server" />
+            <asp:HiddenField ID="hfM2" runat="server" />
+            <asp:HiddenField ID="hfM3" runat="server" />
+            <asp:HiddenField ID="hfM4" runat="server" />--%>
+            <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Style="display: none" />
+            <asp:HiddenField ID="hfPass" runat="server" />
+
+        </form>
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2017-2021
+                <asp:HyperLink NavigateUrl="http://www.tejaxo.com/" ID="lblcopyright" runat="server" Text="Tejaxo.com" /></strong>
+            All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+        <%--<b>Version</b> 3.1.0-rc--%>
+    </div>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+
+    <script src="../tej-base/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        //$(document).ready(function () { $("input").not($(":image")).keypress(function (e) { if (13 == e.keyCode && (iname = $(this).val(), "Submit" !== iname)) { var t = $(this).parents("form:eq(0),body").find("button,input,textarea,select,image"), n = t.index(this); return n > -1 && n + 1 < t.length && (t.eq(n + 1).focus(), t.eq(n + 1).select()), !1 } }), reSizeFn(), $(window).on("beforeunload", function () { var e = document.getElementsByTagName("INPUT"); for (var t in e) "button" != e[t].type && "submit" != e[t].type && "select" != e[t].type && "image" != e[t].type || (e[t].disabled = !0, setTimeout(function () { $find("mpeLoading").show() }, 3e3)); var n = document.getElementsByTagName("button"); for (var t in n) n[t].disabled = !0, setTimeout(function () { $find("mpeLoading").show() }, 3e3); n = null, n = document.getElementById("button"); for (var t in n) n[t].disabled = !0, setTimeout(function () { $find("mpeLoading").show() }, 3e3) }) });
+        //function myFunction(mints) {
+        //    var mlsecond = isNaN(mints) ? 0 : mints * 60000;
+        //    setTimeout(function () {
+        //        window.location.href = "../Login.aspx";
+        //    }, mlsecond);
+        //}
+        var ftime;
+        function Timer(time) {
+            setTimeout(TimeOut, time);
+        }
+        var interv;
+        function mysecs() {
+            interv = setInterval(function () {
+                ftime = ftime - 1000;
+                $("#seconds").html(ftime / 1000);
+                if (ftime <= 0) {
+                    clearInterval(interv);
+                    window.location.href = "../Login.aspx";
+                }
+            }, 1000);
+        }
+        function TimeOut() {
+            ftime = 120000;
+            mysecs();
+            var options = { "backdrop": "static", keyboard: true };
+            $('#MYID2').modal(options);
+            $('#MYID2').modal('show');
+        }
+        function ResetSession() {
+            if ($("#hfPass").val().toUpperCase() == $("#resetpass").val().toUpperCase()) {
+                $("#btnReset").click();
+            }
+            else {
+                alert('Wrong Password');
+            }
+        }
+        function Noselect() {
+            window.location.href = "../Login.aspx";
+        }
+        $(document).ready(function () {
+            $("[src='../tej-base/css/images/bdsearch5.png']").attr("src", "../tej-base/css/images/bdsearch5.png");
+            //$("[src='../tej-base/css/images/bdsearch5.png']").attr("src", "../tej-base/css/images/bdsearch5.png");
+        /*    Timer(600000);*/
+            $("#hfWindowSize").val($(window).width());
+            $("input").not($(":image")).keypress(function (evt) {
+                if (evt.keyCode == 13) {
+
+                    iname = $(this).val();
+                    if (iname !== 'Submit') {
+                        var fields = $(this).parents('form:eq(0),body').find('button,input,textarea,select,image');
+                        var index = fields.index(this);
+                        if (index > -1 && (index + 1) < fields.length) {
+                            fields.eq(index + 1).focus();
+                            fields.eq(index + 1).select();
+                        }
+                        return false;
+                    }
+                }
+            });
+        });
+        function checkTextValIsValid(myTkN) {
+            if (myTkN.value == "" || myTkN.value == "-")
+                myTkN.style.border = "1px solid red";
+            else myTkN.style.border = "";
+        }
+    </script>
+    <!-- ChartJS -->
+    <%--<script src="../theme/plugins/chart.js/Chart.min.js"></script>--%>
+    <!-- Sparkline -->
+    <%--<script src="../theme/plugins/sparklines/sparkline.js"></script>--%>
+    <%--<!-- JQVMap -->
+<script src="../theme/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="../theme/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>--%>
+    <!-- jQuery Knob Chart -->
+    <%--<script src="../theme/plugins/jquery-knob/jquery.knob.min.js"></script>--%>
+    <!-- daterangepicker -->
+    <%--<script src="../theme/plugins/moment/moment.min.js"></script>--%>
+    <%--<script src="../theme/plugins/daterangepicker/daterangepicker.js"></script>--%>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <%--<script src="../theme/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>--%>
+    <!-- Summernote -->
+    <%--<script src="../theme/plugins/summernote/summernote-bs4.min.js"></script>--%>
+    <!-- overlayScrollbars -->
+    <%--<script src="../theme/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>--%>
+    <!-- AdminLTE App -->
+    <%--<script src="../theme/dist/js/adminlte.js"></script>--%>
+    <!-- AdminLTE for demo purposes -->
+    <%--<script src="../theme/dist/js/demo.js"></script>--%>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <%--<script src="../theme/dist/js/pages/dashboard.js"></script>--%>
+
+    <script type="text/javascript">
+
+        //function expclick() {
+        //    
+        //    $("[data-widget=pushmenu]").click();
+        //}
+        //$(document).ready(function () {
+
+        //    $("[data-widget=pushmenu]").click();
+        //});
+        //var expended = false;
+        //function expand() {
+
+        //    var hasclass = $(".sidebar-mini")[0].classList.contains("sidebar-collapse");
+        //    if (hasclass) {
+
+        //        if (expended) {
+        //            $(".main-sidebar, .main-sidebar::before").width("250px");
+        //            $(".layout-fixed .brand-link").width("225px");
+        //            expended = false;
+        //        }
+        //        else {
+        //            $(".main-sidebar, .main-sidebar::before").width("450px");
+        //            $(".layout-fixed .brand-link").width("425px");
+        //            expended = true;
+        //        }
+        //    }
+        //    else {
+        //        if (expended) {
+        //            $(".main-sidebar, .main-sidebar::before").width("250px");
+        //            $(".layout-fixed .brand-link").width("225px");
+        //            expended = false;
+        //        }
+        //        else {
+        //            $(".main-sidebar, .main-sidebar::before").width("450px");
+        //            $(".layout-fixed .brand-link").width("425px");
+        //            expended = true;
+        //        }
+        //    }
+        //}       
+
+    </script>
+
+    <div id="DemoModal" class="modal">
+        <div style="position: fixed; width: 100%; height: 100%; z-index: 10002; background-color: Gray; filter: alpha(opacity=70); opacity: 0.7;">
+            &nbsp;
+        </div>
+        <table style="position: fixed; width: 100%; height: 100%; z-index: 10003;">
+            <tr>
+                <td align="center" valign="middle">
+                    <div style="color: Black; font-weight: bolder; background-color: White; padding: 15px; width: 200px;">
+                        <asp:Image ID="Image3" runat="server" ImageUrl="~/content/images/ajax-loader.gif" />
+                        Processing....
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="MYID2" class="modal fade sessonerror" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" style="width: 400px;">
+                <div id="ctl00_Div1" class="modal-header" style="background: linear-gradient(to left, #1CB5E0, #000046); color: white">
+                    <%--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>--%>
+                    <h4 id="ctl00_H1" class="modal-title">Session Timeout Alert</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p id="ctl00_P1"></p>
+                            <p>
+                                Your Session will expire in&nbsp;<span id="seconds"></span>&nbsp;seconds.<br>
+                                Do you want to reset?
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Enter Password to Reset
+                                            <input type="password" id="resetpass" autocomplete="off" placeholder="****" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="ctl00_Button1" type="button" onclick="ResetSession();" class="btn btn-success">Yes, Keep me signed in</button>
+                    <button id="ctl00_Button3" type="button" onclick="Noselect();" class="btn btn-danger">No, Sign me out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+         <img id="keepAliveIMG" width="1" height="1" src="../../tej-base/images/t_logo_w.png?" /> 
+   
+
+
+<script language="javascript" type="text/javascript"> 
+    var myImg = document.getElementById("keepAliveIMG");
+
+    if (myImg) {
+        window.setInterval(function () {
+            myImg.src = myImg.src.replace(/\?.*$/, '?' + Math.random());
+        }, 6000);
+    }   
+  
+</script> 
+</body>
+</html>
+<%
+
+
+
+
+%>

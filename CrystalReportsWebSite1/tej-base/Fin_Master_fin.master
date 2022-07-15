@@ -1,0 +1,489 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="Fin_Master8" CodeFile="Fin_Master_fin.master.cs" %>
+
+<%@ Register Src="~/tej-base/controls/menuAws.ascx" TagPrefix="uc1" TagName="menuAws" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link rel="shortcut icon" type="image/ico" href="images/finsys _small.jpg" />
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Page-Enter" content="blendTrans(Duration=0.2)" />
+    <meta http-equiv="Page-Exit" content="blendTrans(Duration=0.2)" />
+
+    <title></title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+
+    <link rel="stylesheet" href="../tej-base/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../tej-base/dist/css/AdminLTE.min.css" />
+    <link rel="stylesheet" href="../tej-base/dist/css/skins/_all-skins.min.css" />
+
+
+    <script src="../tej-base/Scripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="../tej-base/Scripts/jquery.colorbox-min.js" type="text/javascript"></script>
+    <script src="../tej-base/Scripts/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="../tej-base/Scripts/temp.js" type="text/javascript"></script>
+
+    <link href="../tej-base/Scripts/colorbox.css" type="text/css" rel="Stylesheet" />
+    <link href="../tej-base/css/GridviewScroll.css" type="text/css" rel="Stylesheet" />
+    <link href="../tej-base/css/GridviewScroll2.css" type="text/css" rel="Stylesheet" />
+
+    <link type="text/css" rel="Stylesheet" href="../tej-base/Styles/amazonmenu.css" />
+    <script src="../tej-base/Scripts/amazonmenu.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function SessionExpireAlert(e) { e = 3e5; var n = 300; document.getElementsByName("seconds").innerHTML = n, setInterval(function () { n--, document.getElementById("seconds").innerHTML = n, n <= 0 && (window.location = "../login.aspx") }, 1e3), setTimeout(function () { $find("mpeTimeout").show() }, 24e4), setTimeout(function () { window.location = "../login.aspx" }, e) }
+        function ResetSession() { window.location = window.location.href }
+        function max_length(e, u) { if (e.value.length > u) return e.value = e.value.substr(0, u), !1 }
+        function showDiv() {
+            document.getElementById("mnu").style.display = "block";
+            var activeurl = ".." + window.location.href.replace(window.location.origin, '');
+            activeurl = activeurl.replace("%5e", "^");
+            activeurl = activeurl.replace("%40", "@");
+            //$('a[href="' + activeurl + '"]').parent('li').addClass('hassub selected').addClass('issub');
+            //$('a[href="' + activeurl + '"]').addClass('issub selected');
+        }
+        function hideDiv() { document.getElementById("mnu").style.display = "none", reSizeFn() }
+        function reSizeFn() {
+            $("#txtsearchall").show();
+            $("#lblbrname").show();
+            $("#lblyearS").show();
+            $("#year").show();
+            $("#welc").show();
+            $("#branch").show();
+            $("#lblbcode").show();
+
+            $(window).width() < 820 ? $("#menuBurger").hide() : $("#menuBurger").show();
+            $("#wbheader").height() > 50 ? $("#txtsearchall").hide() : $("#txtsearchall").show();
+            if ($(window).width() < 1100 && $("#wbheader").height() > 50) {
+                $("#txtsearchall").hide();
+                $("#lblbrname").hide();
+                $("#lblyearS").hide();
+                $("#year").hide();
+                $("#welc").hide();
+                $("#branch").hide();
+                $("#lblbcode").hide();
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        .modalPopup .body, .modalPopup .header {
+            line-height: 30px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .modalBackground {
+            background-color: gray;
+            filter: alpha(opacity=40);
+            opacity: .4;
+        }
+
+        .modalPopup1 {
+            padding: 0;
+        }
+
+        .modalPopup {
+            background-color: #FFF;
+            width: 300px;
+            border: 3px solid #3c8dbc;
+            border-radius: 12px;
+            padding: 0;
+        }
+
+            .modalPopup .header {
+                background-color: #3c8dbc;
+                height: 30px;
+                color: #fff;
+                border-top-left-radius: 6px;
+                border-top-right-radius: 6px;
+            }
+
+            .modalPopup .body {
+                min-height: 50px;
+            }
+
+            .modalPopup .footer {
+                padding: 6px;
+            }
+
+            .modalPopup .no, .modalPopup .yes {
+                height: 23px;
+                color: #fff;
+                line-height: 23px;
+                text-align: center;
+                font-weight: 700;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+
+            .modalPopup .yes {
+                background-color: #3c8dbc;
+                border: 1px solid #3c8dbc;
+            }
+
+            .modalPopup .no {
+                background-color: #9F9F9F;
+                border: 1px solid #5C5C5C;
+            }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #3d98af;
+            }
+
+        .burger, .burger2 {
+            height: 3px;
+            background-color: #fff;
+            margin: 2px 0;
+        }
+
+        .burger {
+            width: 15px;
+        }
+
+        .burger2 {
+            width: 13px;
+        }
+
+        #grad {
+            background-image: linear-gradient(to bottom right,#93cfca,#3d98af);
+        }
+
+        .bottomShadow {
+            box-shadow: 0 5px 5px -5px #333;
+        }
+        .skin-blue .main-header .navbar {
+    background-image: linear-gradient(to left,#0d0e0e,#dd397f);
+}
+        .amazonmenu > ul li a{
+
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <script>
+        jQuery(function () { amazonmenu.init({ menuid: "mysidebarmenu" }) });
+    </script>
+</head>
+<body id="body1" runat="server" onclick="hideDiv()" onresize="reSizeFn()" class="sidebar-mini sidebar-collapse skin-blue">
+    <div class="wrapper">
+        <header class="main-header bottomShadow" style="background-color: #1897c0">
+            <a id="menuBurger" class="nav-toggle logo" onmouseover="showDiv()" title="ERP Menu" style="padding: 16px 0 0 15px;">
+                <div class="burger2"></div>
+                <div class="burger2"></div>
+                <div class="burger2"></div>
+            </a>
+            <nav class="navbar navbar-static-top" role="navigation" id="wbheader">
+                <span class="sr-only">Toggle navigation</span>
+                <div class="navbar-custom-menu" style="float: left">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <img id="imglogo" class="logo_finsys" runat="server" alt="Tejaxo"  src="" title="Click to Refresh" onclick="refresh()" style="max-height: 50px; max-width: 120px; cursor: pointer;" />
+                            <div style="color: white; font-size: xx-small; cursor: pointer; text-align: center; display: none" onclick="refresh()">Click here (Toggle)</div>
+                        </li>
+                        <li>
+                            <input type="text" id="txtsearchall" runat="server" class="form-control txtsrch" placeholder="Fast Search..." style="margin: 11px 0 0 5px; height: 28px; width: 150px; height: 28px" accesskey="s" title="Press Alt + S to focus here." /></li>
+                        <li>
+                            <img id="btnBookMarkMenu" runat="server" alt="Tejaxo" src="~/tej-base/images/bookmark_menu.png" title="Back to last option" style="cursor: pointer; width: 40px; height: 30px; margin: 10px 0 0 5px;" onclick="btnBookmark()" accesskey="a" />
+                        </li>
+                        <li id="shortcut1" runat="server">
+                            <button id="btnShortcut1" runat="server" onserverclick="btnShort1_ServerClick" style="margin: 8px 0 0 5px; border: 2px groove #000; background-color: white; font-weight: 500; width: 40px; height: 34px;" title="Voucher Checking">V.C.</button>
+                            <%--<img id="btnShortcut1" runat="server" alt="Shortcut 1" src="~/tej-base/images/f1-key.png" title="Voucher Checking" style="cursor: pointer; width: 40px; height: 30px; margin: 10px 0 0 5px;" onclick="btnShort1()" accesskey="a" />--%>
+                        </li>
+                        <li id="shortcut2" runat="server">
+                            <button id="btnShortcut2" runat="server" onserverclick="btnShort2_ServerClick" style="margin: 8px 0 0 5px; border: 2px groove #000; background-color: white; font-weight: 500; width: 40px; height: 34px;" title="Voucher Approval">V.A.</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="hidden-xs">
+                                    <span id="welc">Welcome to</span>
+                                    <asp:Label ID="lblwelcome" runat="server"></asp:Label>
+                                    <b>
+                                        <asp:Label ID="lblbcode" runat="server"></asp:Label></b>
+                                    <asp:Label ID="lblBrHeader" runat="server"></asp:Label>
+                                    <b id="branch">Branch :</b> &nbsp;
+                                    <asp:Label ID="lblbrname" runat="server"></asp:Label>
+                                    (<asp:Label ID="lblbrcode1" runat="server"></asp:Label>)
+                                    <b id="year">Year :</b> &nbsp;
+                                    <asp:Label ID="lblyearS" runat="server"></asp:Label>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <asp:Image ID="imgprofile" runat="server" ImageUrl="~/tej-base/images/USER1.jpg" CssClass="user-image" />
+                                <asp:Label ID="lblusername" runat="server" Text="Username" CssClass="hidden-xs"></asp:Label>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="user-header">
+                                    <asp:Image ID="Image1" runat="server" ImageUrl="~/tej-base/images/USER1.jpg" CssClass="img-circle bottomShadow" />
+                                    <p>
+                                        <asp:Label ID="lblusername1" runat="server" Text="Username" CssClass="hidden-xs" Style="font-size: larger;"></asp:Label>
+                                        <small>
+                                            <b>Department : </b>
+                                            <asp:Label ID="lbluserept" runat="server"></asp:Label>
+                                        </small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="col-xs-4 text-center">
+                                        <button id="btnyear" runat="server" class="btn btn-default btn-flat" onserverclick="btnyear_ServerClick" accesskey="Y" style="width: 101px; border: 2px groove #bbb8b8; font-weight: 500;">
+                                            <u>Y</u>ear<br />
+                                            (<asp:Label ID="lblyr" runat="server"></asp:Label>)</button>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <a href="#"></a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <button id="btnbranch" runat="server" class="btn btn-default btn-flat" onserverclick="btnbranch_ServerClick" accesskey="B" style="width: 101px; border: 2px groove #bbb8b8; font-weight: 500;">
+                                            <u>B</u>ranch<br />
+                                            (<asp:Label ID="lblbrcode" runat="server"></asp:Label>)</button>
+                                    </div>
+                                    <div class="col-xs-12" style="margin-top: 3px;">
+                                        <button id="btncomm_opt" runat="server" class="btn btn-default btn-flat" style="width: 98%; border: 2px groove #bbb8b8; font-weight: 500; background-color: #dfebf3" accesskey="i" onserverclick="btncomm_ServerClick">ERP Common Opt<u>i</u>on</button>
+                                    </div>
+                                    <div class="col-xs-12" style="margin-top: 3px;">
+                                        <button id="btnMsg" runat="server" class="btn btn-default btn-flat" style="width: 98%; border: 2px groove #bbb8b8; font-weight: 500; background-color: #f8d8d8" onserverclick="btnMsg_ServerClick">ERP Messaging Box</button>
+                                    </div>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <table style="width: 100%">
+                                        <tr>
+                                            <td>
+                                                <div class="pull-left text-center">
+                                                    <button id="btnshowmsg" runat="server" class="btn btn-default btn-flat" accesskey="M" onserverclick="btnMsgs_ServerClick" style="border: 2px groove #bbb8b8; font-weight: 500;"><u>E</u>RP Msgs</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <%--<button id="btnImg" runat="server"></button>--%>
+                                                    <input type="image" alt="submit" onclick="btnLanguage();" id="btnImg" runat="server" src="~/tej-base/images/16-_Translate-512.png" title="Change Language" />
+                                                </div>
+                                            </td>
+                                            <td style="float: right">
+                                                <button id="btnlogout" runat="server" class="btn btn-default btn-flat" accesskey="L" onserverclick="btnlogout_ServerClick" style="border: 2px groove #bbb8b8; font-weight: 500;"><u>L</u>og Out</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown messages-menu">
+                            <%--<uc1:masterTopBar ID="xx" runat="server" />--%>
+
+                            <a href="#" class="dropdown-toggle" onclick="Quick_Menu()" data-toggle="dropdown" title="Quick Menu (Alt + Q)">
+                                <div class="burger2"></div>
+                                <div class="burger2"></div>
+                                <div class="burger2"></div>
+                            </a>
+                            <button id="btnquickmenu" runat="server" class="dropdown-toggle" accesskey="Q" onserverclick="btnquickmenu_ServerClick" style="display: none"></button>
+                            <button id="btnRefresh" runat="server" class="dropdown-toggle" accesskey="R" onserverclick="btnRefresh_ServerClick" style="display: none"></button>
+                            <button id="btnLanguage" runat="server" class="dropdown-toggle" onserverclick="btnLanguage_ServerClick" style="display: none"></button>
+                            <button id="btnopenmenu" runat="server" class="dropdown-toggle" onserverclick="btnopenmenu_ServerClick" style="display: none"></button>
+                            <button id="btnBookmark" runat="server" class="dropdown-toggle" onserverclick="btnBookmark_ServerClick" style="display: none"></button>
+                        </li>
+                        <%--<li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="label label-success">4</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                            </ul>
+                        </li>--%>
+                        <!-- Control Sidebar Toggle Button -->
+                        <li>
+                            <%--<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>--%>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+        </header>
+        <form id="form2" runat="server" autocomplete="off">
+            <asp:ScriptManager ID="scr" runat="server"></asp:ScriptManager>
+            <asp:HiddenField ID="hfWindowSize" runat="server" />
+            <aside class="main-sidebar">
+                <section>
+                    <div class="sidebar-form">
+                        <div class="input-group">
+                            <asp:TextBox ID="txtsrch" runat="server" CssClass="form-control"></asp:TextBox>
+                            <span class="input-group-btn">
+                                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+
+                            <asp:TextBox ID="hdsrchTxt" runat="server" Style="display: none"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div style="max-height: 500px; display: none" id="mnu" onmouseover="showDiv()">
+                        <%--<uc1:menuAws runat="server" ID="menuAws" />--%>
+                        <asp:Panel ID="cssmenu" runat="server">
+                        </asp:Panel>
+                    </div>
+                </section>
+            </aside>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <asp:HiddenField ID="hfval" runat="server" />
+
+            <asp:HiddenField ID="hfM1" runat="server" />
+            <asp:HiddenField ID="hfM2" runat="server" />
+            <asp:HiddenField ID="hfM3" runat="server" />
+            <asp:HiddenField ID="hfM4" runat="server" />
+
+            <asp:Button ID="btnhideF" runat="server" OnClick="btnhideF_Click" Style="display: none" />
+
+            <asp:LinkButton ID="lnkFake" runat="server" />
+            <asp:ModalPopupExtender ID="mpeTimeout" BehaviorID="mpeTimeout" runat="server" PopupControlID="pnlPopup" TargetControlID="lnkFake"
+                OkControlID="btnYes" CancelControlID="btnNo" BackgroundCssClass="modalBackground" OnOkScript="ResetSession()">
+            </asp:ModalPopupExtender>
+            <asp:Panel ID="pnlPopup" runat="server" CssClass="modalPopup" Style="display: none;">
+                <div class="header" style="height: 35px;">
+                    Session Expiring!
+                </div>
+                <div class="body">
+                    Your Session will expire in&nbsp;<span id="seconds"></span>&nbsp;seconds.<br />
+                    Do you want to reset?
+                </div>
+                <div class="footer" style="text-align: center">
+                    <asp:Button ID="btnYes" runat="server" Text="Yes" CssClass="yes" Style="width: 92px; height: 30px;" />&nbsp;
+                    <asp:Button ID="btnNo" runat="server" Text="No" CssClass="no" Style="width: 92px; height: 30px;" />
+                </div>
+            </asp:Panel>
+
+            <asp:ModalPopupExtender ID="mpeLoading" BehaviorID="mpeLoading" runat="server" PopupControlID="pnlPopup2" TargetControlID="lnkFake"
+                BackgroundCssClass="modalBackground">
+            </asp:ModalPopupExtender>
+            <asp:Panel ID="pnlPopup2" runat="server" CssClass="modalPopup1" Style="display: none;">
+                <div id="loadingImage" style="background-color: #fff; border: solid groove; width: 90px; height: 60px; border-radius: 6px; text-align: center; font-style: italic; color: #666666; font-size: medium;">
+                    <img id="imgLoad" runat="server" src="~/tej-base/scripts/images/loading.gif" alt="Loading" style="padding-top: 12px;" />
+                    <h6>Processing....
+                    </h6>
+                </div>
+            </asp:Panel>
+        </form>
+        <footer class="main-footer" style="display:none">
+            <div class="pull-right hidden-xs">
+                <b>Build Date: </b>
+                <asp:Label ID="lblbuilddt" runat="server"></asp:Label>
+                &nbsp;&nbsp;
+                <b>Server IP: </b>
+                <asp:Label ID="lblserverIP" runat="server"></asp:Label>
+                <span style="font-size: xx-small; float: right; vertical-align: central">&nbsp;&nbsp;[F11 for Full Screen]</span>
+                <br />
+
+            </div>
+            <%--<strong><a href="http://erp.co.in" target="_blank"><u>Finsys &copy; 2018 - 19 </u></a> | Helpline No: +91- 9015220220</strong>--%>
+            <strong>
+                <label id="lblHelpLine" runat="server"></label>
+                <%--<a id="helpLin" runat="server" href="https://erp.co.in/salman-group-support-team-at-erp-erp/">Click Here</a>--%>
+                <a id="helpLin" runat="server" ></a>
+            </strong>
+        </footer>
+
+        <div class="control-sidebar-bg"></div>
+    </div>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="../tej-base/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        //$(document).ready(function () { $("input").not($(":image")).keypress(function (e) { if (13 == e.keyCode && (iname = $(this).val(), "Submit" !== iname)) { var t = $(this).parents("form:eq(0),body").find("button,input,textarea,select,image"), n = t.index(this); return n > -1 && n + 1 < t.length && (t.eq(n + 1).focus(), t.eq(n + 1).select()), !1 } }), reSizeFn(), $(window).on("beforeunload", function () { var e = document.getElementsByTagName("INPUT"); for (var t in e) "button" != e[t].type && "submit" != e[t].type && "select" != e[t].type && "image" != e[t].type || (e[t].disabled = !0, setTimeout(function () { $find("mpeLoading").show() }, 3e3)); var n = document.getElementsByTagName("button"); for (var t in n) n[t].disabled = !0, setTimeout(function () { $find("mpeLoading").show() }, 3e3); n = null, n = document.getElementById("button"); for (var t in n) n[t].disabled = !0, setTimeout(function () { $find("mpeLoading").show() }, 3e3) }) });
+        $(document).ready(function () {
+            $("#hfWindowSize").val($(window).width());
+            reSizeFn();
+
+            $("input").not($(":image")).keypress(function (evt) {
+                if (evt.keyCode == 13) {
+
+                    iname = $(this).val();
+                    if (iname !== 'Submit') {
+                        var fields = $(this).parents('form:eq(0),body').find('button,input,textarea,select,image');
+                        var index = fields.index(this);
+                        if (index > -1 && (index + 1) < fields.length) {
+                            fields.eq(index + 1).focus();
+                            fields.eq(index + 1).select();
+                        }
+                        return false;
+                    }
+                }
+            });
+
+            $('#txtsearchall').keypress(function (event) {
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                document.getElementById("hdsrchTxt").value = document.getElementById("txtsearchall").value;
+                if (keycode == '13') {
+                    document.getElementById("btnopenmenu").click()
+                }
+            });
+        });
+        function Quick_Menu() { document.getElementById("btnquickmenu").click() }
+        function btnLanguage() { document.getElementById("btnLanguage").click() }
+        function refresh() { document.getElementById("btnRefresh").click() }
+        function btnBookmark() { document.getElementById("btnBookmark").click() }
+
+        function checkTextValIsValid(myTkN) {
+            if (myTkN.value == "" || myTkN.value == "-")
+                myTkN.style.border = "1px solid red";
+            else myTkN.style.border = "";
+        }
+        function highLightMenu(aktag, ulID) {
+            //document.getElementById("hfM1").value = aktag.text;
+            hightlightSelectedValue(aktag.text.toUpperCase(), ulID);
+        }
+        function hightlightSelectedValue(filter, ulID) {
+            
+            var input, filter, ul, li, a, i, txtValue;
+            //ul = document.getElementById(ulID);			
+            ul = ulID;
+            try {
+                li = ul.getElementsByTagName("li");
+            }
+            catch (ex) {
+                li = ul;
+            }
+            if (li.length == 0) {
+                li = ul;
+                a = li.getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase() == filter) {
+                    a.style.border = "2px solid orange";
+                } else {
+                    a.style.border = "";
+                }
+            }
+            else {
+                for (i = 0; i < li.length; i++) {
+                    a = li[i].getElementsByTagName("a")[0];
+                    txtValue = a.textContent || a.innerText;
+                    if (txtValue.toUpperCase() == filter) {
+                        li[i].style.border = "2px solid orange";
+                    } else {
+                        li[i].style.border = "";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

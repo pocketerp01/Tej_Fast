@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CrystalReportsWebSite1", "CrystalReportsWebSite1\", "{F87CD406-5D1B-42B6-BBB7-084073C61805}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_8834"
+		Debug.AspNetCompiler.PhysicalPath = "CrystalReportsWebSite1\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8834\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_8834"
+		Release.AspNetCompiler.PhysicalPath = "CrystalReportsWebSite1\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8834\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "8834"
+		SlnRelativePath = "CrystalReportsWebSite1\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F87CD406-5D1B-42B6-BBB7-084073C61805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F87CD406-5D1B-42B6-BBB7-084073C61805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25607136-462C-4A7D-A4C6-F8E241865AB3}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,5 @@
+Email From
+Password
+SMTP
+SSL==> 1 if True, 0 if false
+PORT

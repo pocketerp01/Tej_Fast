@@ -1,0 +1,366 @@
+﻿using System;
+using System.Data;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+
+
+public partial class neopaction : System.Web.UI.Page
+{
+    string btnval, SQuery, col1, col2, col3, cstr, vchnum, vardate, fromdt, todt, DateRange, year;
+    DataTable dt; DataRow oporow;
+    string frm_mbr, frm_vty, frm_vnum, frm_url, frm_qstr, frm_cocd, frm_uname, frm_tabname, frm_myear, frm_sql, frm_ulvl, frm_formID, frm_UserID;
+    fgenDB fgen = new fgenDB();
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Request.UrlReferrer == null) Response.Redirect("~/login.aspx");
+        else
+        {
+            frm_url = HttpContext.Current.Request.Url.AbsoluteUri;
+            if (frm_url.Contains("STR"))
+            {
+                if (Request.QueryString["STR"].Length > 0)
+                {
+                    frm_qstr = Request.QueryString["STR"].Trim().ToString().ToUpper();
+                    if (frm_qstr.Contains("@"))
+                    {
+                        frm_formID = frm_qstr.Split('@')[1].ToString();
+                        frm_qstr = frm_qstr.Split('@')[0].ToString();
+                        fgenMV.Fn_Set_Mvar(frm_qstr, "U_FORMID", frm_formID);
+                    }
+                    frm_cocd = fgenMV.Fn_Get_Mvar(frm_qstr, "U_COCD");
+                    frm_uname = fgenMV.Fn_Get_Mvar(frm_qstr, "U_UNAME");
+                    frm_myear = fgenMV.Fn_Get_Mvar(frm_qstr, "U_YEAR");
+                    frm_ulvl = fgenMV.Fn_Get_Mvar(frm_qstr, "U_ULEVEL");
+                    frm_mbr = fgenMV.Fn_Get_Mvar(frm_qstr, "U_MBR");
+                    DateRange = fgenMV.Fn_Get_Mvar(frm_qstr, "U_DATERANGE");
+                    frm_UserID = fgenMV.Fn_Get_Mvar(frm_qstr, "U_USERID");
+                }
+                else Response.Redirect("~/login.aspx");
+            }
+            if (!Page.IsPostBack)
+            {
+                vardate = DateTime.Now.ToString("dd/MM/yyyy");
+                btnnew.Focus();
+                fgen.DisableForm(this.Controls);
+                enablectrl(); set_val();
+            }
+        }
+    }
+    public void enablectrl()
+    {
+        btnnew.Disabled = false; btnedit.Disabled = false; btnsave.Disabled = true; btndel.Disabled = false;
+        btnext.Text = " Exit "; btnext.Enabled = true; btnhideF.Enabled = true; btnhideF_s.Enabled = true;
+    }
+    public void disablectrl()
+    {
+        btnnew.Disabled = true; btnedit.Disabled = true; btnsave.Disabled = false; btndel.Disabled = true;
+        btnext.Text = "Cancel"; btnext.Enabled = true; btnhideF.Enabled = true; btnhideF_s.Enabled = true;
+    }
+    public void clearctrl()
+    {
+        hffield.Value = ""; edmode.Value = "";
+    }
+    public void disp_data()
+    {
+        btnval = hffield.Value;
+        switch (btnval)
+        {
+            case "New":
+                if (frm_ulvl != "0") SQuery = "Select distinct a.branchcd||a.type||trim(A.vchnum)||to_char(a.vchdate,'dd/mm/yyyy')||trim(a.acode)||trim(a.icode) as fstr, a.vchnum as complnt_no,to_char(a.vchdate,'dd/mm/yyyy') as compnt_dt,a.invno as inv_no,to_char(a.invdate,'dd/mm/yyyy') as inv_Dt,b.aname as party_name,a.acode as code,c.iname as item_name,a.icode as erpcode,a.ent_by,to_char(a.ent_dt,'dd/mm/yyyy') as ent_Dt from scratch a,famst b,item c where trim(a.acodE)=trim(b.acodE) and trim(a.icodE)=trim(C.icodE) and a.type='CC' and a.branchcd='" + frm_mbr + "' and a.vchdate " + DateRange + " and trim(a.ent_by)='" + frm_uname + "' and substr(a.app_by,1,3)='[A]' and nvl(trim(a.chk_by),'-')='-' order by to_char(a.vchdate,'dd/mm/yyyy') desc";
+                else
+                {
+                    SQuery = "Select distinct a.branchcd||a.type||trim(A.vchnum)||to_char(a.vchdate,'dd/mm/yyyy')||trim(a.acode)||trim(a.icode) as fstr, a.vchnum as complnt_no,to_char(a.vchdate,'dd/mm/yyyy') as compnt_dt,a.invno as inv_no,to_char(a.invdate,'dd/mm/yyyy') as inv_Dt,b.aname as party_name,a.acode as code,c.iname as item_name,a.icode as erpcode,a.ent_by,to_char(a.ent_dt,'dd/mm/yyyy') as ent_Dt from scratch a,famst b,item c where trim(a.acodE)=trim(b.acodE) and trim(a.icodE)=trim(C.icodE) and a.type='CC' and a.branchcd='" + frm_mbr + "' and a.vchdate " + DateRange + " and substr(a.app_by,1,3)='[A]' and nvl(trim(a.chk_by),'-')='-' order by to_char(a.vchdate,'dd/mm/yyyy') desc";
+                    if (frm_cocd == "SRIS") SQuery = "Select distinct a.branchcd||a.type||trim(A.vchnum)||to_char(a.vchdate,'dd/mm/yyyy')||trim(a.acode)||trim(a.icode) as fstr, a.vchnum as complnt_no,to_char(a.vchdate,'dd/mm/yyyy') as compnt_dt,a.invno as inv_no,to_char(a.invdate,'dd/mm/yyyy') as inv_Dt,b.aname as party_name,a.acode as code,c.iname as item_name,a.icode as erpcode,a.ent_by,to_char(a.ent_dt,'dd/mm/yyyy') as ent_Dt from scratch a,famst b,item c where trim(a.acodE)=trim(b.acodE) and trim(a.icodE)=trim(C.icodE) and a.type='CC' and a.branchcd='" + frm_mbr + "' and a.vchdate " + DateRange + " /*and trim(a.ent_by)='" + frm_uname + "'*/ and substr(a.app_by,1,3)='[A]' and nvl(trim(a.chk_by),'-')='-' order by to_char(a.vchdate,'dd/mm/yyyy') desc";
+                }
+                SQuery = "Select distinct a.branchcd||a.type||trim(A.vchnum)||to_char(a.vchdate,'dd/mm/yyyy')||trim(a.acode)||trim(a.icode) as fstr, a.vchnum as complnt_no,to_char(a.vchdate,'dd/mm/yyyy') as compnt_dt,a.invno as inv_no,to_char(a.invdate,'dd/mm/yyyy') as inv_Dt,a.col8 as machine_srno,b.aname as party_name,a.acode as code,c.iname as item_name,a.icode as erpcode,a.ent_by,to_char(a.ent_dt,'dd/mm/yyyy') as ent_Dt from scratch a,famst b,item c where trim(a.acodE)=trim(b.acodE) and trim(a.icodE)=trim(C.icodE) and a.type='CC' and a.branchcd='" + frm_mbr + "' and a.vchdate " + DateRange + " and substr(a.app_by,1,3)='[A]' and nvl(trim(a.chk_by),'-')='-' order by to_char(a.vchdate,'dd/mm/yyyy') desc";
+                if (frm_cocd == "SEL" && frm_ulvl != "0") SQuery = "Select distinct a.branchcd||a.type||trim(A.vchnum)||to_char(a.vchdate,'dd/mm/yyyy')||trim(a.acode)||trim(a.icode) as fstr, a.vchnum as complnt_no,to_char(a.vchdate,'dd/mm/yyyy') as compnt_dt,a.invno as inv_no,to_char(a.invdate,'dd/mm/yyyy') as inv_Dt,b.aname as party_name,a.acode as code,c.iname as item_name,a.icode as erpcode,a.ent_by,to_char(a.ent_dt,'dd/mm/yyyy') as ent_Dt from scratch a,famst b,item c where trim(a.acodE)=trim(b.acodE) and trim(a.icodE)=trim(C.icodE) and a.type='CC' and a.branchcd='" + frm_mbr + "' and a.vchdate " + DateRange + " and trim(a.col15)='" + frm_uname + "' and substr(a.app_by,1,3)='[A]' and nvl(trim(a.chk_by),'-')='-' order by to_char(a.vchdate,'dd/mm/yyyy') desc";
+                break;
+            default:
+                if (btnval == "Edit" || btnval == "Del" || btnval == "Print")
+                {
+                    if (frm_ulvl != "0") SQuery = "Select distinct a.branchcd||a.type||trim(A.vchnum)||to_char(a.vchdate,'dd/mm/yyyy')||trim(a.acode)||trim(a.icode) as fstr, a.vchnum as entry_no,to_char(a.vchdate,'dd/mm/yyyy') as entry_dt,a.col5 as inv_no,a.col6 as inv_Dt,b.aname as party_name,a.acode as code,c.iname as item_name,a.icode as erpcode,a.ent_by,to_char(a.ent_dt,'dd/mm/yyyy') as ent_Dt,to_char(vchdate,'yyyymmdd') as vdd from scratch2 a,famst b,item c where trim(a.acodE)=trim(b.acodE) and trim(a.icodE)=trim(C.icodE) and a.type='AC' and a.branchcd='" + frm_mbr + "' and a.vchdate " + DateRange + " and trim(a.ent_by)='" + frm_uname + "' order by vdd desc";
+                    else
+                    {
+                        SQuery = "Select distinct a.branchcd||a.type||trim(A.vchnum)||to_char(a.vchdate,'dd/mm/yyyy')||trim(a.acode)||trim(a.icode) as fstr, a.vchnum as entry_no,to_char(a.vchdate,'dd/mm/yyyy') as entry_dt,a.col5 as inv_no,a.col6 as inv_Dt,b.aname as party_name,a.acode as code,c.iname as item_name,a.icode as erpcode,a.ent_by,to_char(a.ent_dt,'dd/mm/yyyy') as ent_Dt,to_char(vchdate,'yyyymmdd') as vdd from scratch2 a,famst b,item c where trim(a.acodE)=trim(b.acodE) and trim(a.icodE)=trim(C.icodE) and a.type='AC' and a.branchcd='" + frm_mbr + "' and a.vchdate " + DateRange + " order by vdd desc";
+                    }
+                    if (frm_cocd == "SRIS") SQuery = "Select distinct a.branchcd||a.type||trim(A.vchnum)||to_char(a.vchdate,'dd/mm/yyyy')||trim(a.acode)||trim(a.icode) as fstr, a.vchnum as entry_no,to_char(a.vchdate,'dd/mm/yyyy') as entry_dt,a.col5 as inv_no,a.col6 as inv_Dt,b.aname as party_name,a.acode as code,c.iname as item_name,a.icode as erpcode,a.ent_by,to_char(a.ent_dt,'dd/mm/yyyy') as ent_Dt,to_char(vchdate,'yyyymmdd') as vdd from scratch2 a,famst b,item c where trim(a.acodE)=trim(b.acodE) and trim(a.icodE)=trim(C.icodE) and a.type='AC' and a.branchcd='" + frm_mbr + "' and a.vchdate " + DateRange + " order by vdd desc";
+
+                    SQuery = "Select distinct a.branchcd||a.type||trim(A.vchnum)||to_char(a.vchdate,'dd/mm/yyyy')||trim(a.acode)||trim(a.icode) as fstr, a.vchnum as entry_no,to_char(a.vchdate,'dd/mm/yyyy') as entry_dt,a.col5 as inv_no,a.col6 as inv_Dt,b.aname as party_name,a.acode as code,c.iname as item_name,a.icode as erpcode,a.ent_by,to_char(a.ent_dt,'dd/mm/yyyy') as ent_Dt,to_char(vchdate,'yyyymmdd') as vdd from scratch2 a,famst b,item c where trim(a.acodE)=trim(b.acodE) and trim(a.icodE)=trim(C.icodE) and a.type='AC' and a.branchcd='" + frm_mbr + "' and a.vchdate " + DateRange + " order by vdd desc,a.vchnum desc";
+                    SQuery = "Select distinct a.branchcd||a.type||trim(A.vchnum)||to_char(a.vchdate,'dd/mm/yyyy')||trim(a.acode)||trim(a.icode) as fstr, a.col22 as reqno,a.col23 as reqdt,d.col8 as machine_srno,a.col5 as inv_no,a.col6 as inv_Dt,a.vchnum as entry_no,to_char(a.vchdate,'dd/mm/yyyy') as entry_dt,b.aname as party_name,a.acode as code,c.iname as item_name,a.icode as erpcode,a.ent_by,to_char(a.ent_dt,'dd/mm/yyyy') as ent_Dt,to_char(A.vchdate,'yyyymmdd') as vdd from scratch2 a,famst b,item c,scratch d where trim(a.acodE)=trim(b.acodE) and trim(a.icodE)=trim(C.icodE) and a.branchcd||trim(a.col22)||trim(a.col23)||Trim(A.acode)||trim(A.icode)=d.branchcd||trim(d.vchnum)||to_char(d.vchdate,'dd/mm/yyyy')||Trim(d.acode)||trim(d.icode) and a.type='AC' and a.branchcd='" + frm_mbr + "' and a.vchdate " + DateRange + " order by vdd desc,a.vchnum desc";
+                }
+                break;
+        }
+        if (SQuery.Length > 0)
+        {
+            fgenMV.Fn_Set_Mvar(frm_qstr, "U_XID", "Tejaxo");
+            fgenMV.Fn_Set_Mvar(frm_qstr, "U_SEEKSQL", SQuery);
+        }
+    }
+    public void set_val()
+    {
+        try
+        {
+            fgen.execute_cmd(frm_qstr, frm_cocd, "ALTER TABLE scratch2 MODIFY COL15 VARCHAR2(1000) DEFAULT '-'");
+            fgen.execute_cmd(frm_qstr, frm_cocd, "ALTER TABLE scratch2 MODIFY COL16 VARCHAR2(1000) DEFAULT '-'");
+            fgen.execute_cmd(frm_qstr, frm_cocd, "ALTER TABLE scratch2 MODIFY COL17 VARCHAR2(1000) DEFAULT '-'");
+            fgen.execute_cmd(frm_qstr, frm_cocd, "ALTER TABLE scratch2 MODIFY COL18 VARCHAR2(1000) DEFAULT '-'");
+        }
+        catch { }
+        if (frm_cocd == "CCEL")
+        {
+            spnjobno.Visible = true; txtjobno.Visible = true;
+            tddivision.InnerText = "Department";
+            lblheader.Text = "Action Taken on Customer Request";
+        }
+        else
+        {
+            spnjobno.Visible = false; txtjobno.Visible = false;
+            tddivision.InnerText = "Division of Complaint";
+            lblheader.Text = "Action Taken on Customer Complaint";
+        }
+        if (frm_cocd == "SRIS") tdrply.InnerText = "Line Detail";
+        if (frm_cocd == "SEL")
+        {
+            lblBatch.InnerText = "Machine Sr.No";
+            tdinvoice.InnerText = "Req. No";
+            txtinvbtch.ReadOnly = true;
+
+            //DivAddress.Visible = false;
+            //DivParty.Visible = false;
+            txtinvno.Visible = false;
+
+            if (frm_ulvl != "0")
+                btninvno.Visible = false;
+        }
+
+        ddntrofcmlnt.Enabled = false;
+        txtntrcmpln.Enabled = false;
+        dddivisioncmltn.Enabled = false;
+    }
+    protected void btnnew_ServerClick(object sender, EventArgs e)
+    {
+        clearctrl();
+        hffield.Value = "New";
+        disp_data();
+        fgen.Fn_open_sseek("-", frm_qstr);
+    }
+    protected void btnedit_ServerClick(object sender, EventArgs e)
+    {
+        clearctrl();
+        hffield.Value = "Edit";
+        disp_data();
+        fgen.Fn_open_sseek("-", frm_qstr);
+    }
+    protected void btnsave_ServerClick(object sender, EventArgs e)
+    {
+        fgen.fill_dash(this.Controls);
+        fgen.msg("-", "SMSG", "Are you sure!! you want to save");
+    }
+    protected void btndel_ServerClick(object sender, EventArgs e)
+    {
+        clearctrl();
+        hffield.Value = "Del";
+        disp_data();
+        fgen.Fn_open_sseek("-", frm_qstr);
+    }
+    protected void btnprint_ServerClick(object sender, EventArgs e)
+    {
+        hffield.Value = "Print";
+        disp_data();
+        fgen.Fn_open_sseek("-", frm_qstr);
+    }
+    protected void btnext_Click(object sender, EventArgs e)
+    {
+        if (btnext.Text == " Exit ") Response.Redirect("~/tej-base/desktop.aspx?STR=" + frm_qstr);
+        else
+        {
+            fgen.ResetForm(this.Controls);
+            fgen.DisableForm(this.Controls);
+            clearctrl();
+            enablectrl();
+            sg1.DataSource = null;
+            sg1.DataBind();
+        }
+    }
+    protected void btnhideF_Click(object sender, EventArgs e)
+    {
+        btnval = hffield.Value;
+
+        if (hffield.Value == "D")
+        {
+            col1 = Request.Cookies["REPLY"].Value.ToString().Trim();
+
+            if (col1 == "Y")
+            {
+                fgen.execute_cmd(frm_qstr, frm_cocd, "delete from scratch2 a where a.branchcd||a.type||trim(a.vchnum)||to_char(a.vchdate,'dd/mm/yyyy')||TRIM(a.acode)||TRIM(a.icode)='" + edmode.Value + "'");
+                fgen.msg("-", "AMSG", "Details are deleted for Entry No. " + edmode.Value.Substring(4, 6) + "");
+                clearctrl(); fgen.ResetForm(this.Controls);
+            }
+        }
+        else
+        {
+
+            {
+                col1 = fgenMV.Fn_Get_Mvar(frm_qstr, "U_COL1").ToString().Trim().Replace("&amp", "");
+                col2 = fgenMV.Fn_Get_Mvar(frm_qstr, "U_COL2").ToString().Trim().Replace("&amp", "");
+                col3 = fgenMV.Fn_Get_Mvar(frm_qstr, "U_COL3").ToString().Trim().Replace("&amp", "");
+
+                switch (btnval)
+                {
+                    case "New":
+                        if (col1 == "") return;
+                        dt = new DataTable();
+                        dt = fgen.getdata(frm_qstr, frm_cocd, "Select distinct a.vchnum as vchnum,to_char(a.vchdate,'dd/mm/yyyy') as vchdate,a.INVNO AS pono ,to_char(a.INVDATE,'dd/mm/yyyy') AS podate ,b.aname ,a.acode ,c.iname ,a.icode ,a.srno,a.COL1 as app,a.COL2,a.COL3,a.COL4,a.REMARKS as rmk,a.ent_by,to_char(a.ent_dt,'dd/mm/yyyy') as ent_Dt,a.naration,a.col8 from scratch a ,famst b,item c where trim(a.acodE)=trim(b.acodE) and trim(a.icodE)=trim(C.icodE) and a.branchcd||a.type||trim(A.vchnum)||to_char(a.vchdate,'dd/mm/yyyy')||trim(a.acode)||trim(a.icode)='" + col1 + "' order by a.srno");
+                        txtcvchnum.Text = dt.Rows[0]["vchnum"].ToString(); txtcvchdate.Text = dt.Rows[0]["vchdate"].ToString();
+                        txtinvno.Text = dt.Rows[0]["pono"].ToString(); txtinvdate.Text = dt.Rows[0]["podate"].ToString();
+                        txtacode.Text = dt.Rows[0]["acode"].ToString(); txtaname.Text = dt.Rows[0]["aname"].ToString();
+                        txtsacode.Text = dt.Rows[0]["acode"].ToString(); txtsaname.Text = dt.Rows[0]["aname"].ToString();
+                        txticode.Text = dt.Rows[0]["icode"].ToString(); txtiname.Text = dt.Rows[0]["iname"].ToString();
+                        txtsicode.Text = dt.Rows[0]["icode"].ToString(); txtsiname.Text = dt.Rows[0]["iname"].ToString();
+                        txtrmk.Text = dt.Rows[0]["naration"].ToString(); txtntrcmpln.Text = dt.Rows[0]["col3"].ToString();
+                        txtent_by.Text = dt.Rows[0]["ent_by"].ToString(); txtent_dt.Text = dt.Rows[0]["ent_dt"].ToString();
+                        ddntrofcmlnt.Text = dt.Rows[0]["col2"].ToString(); dddivisioncmltn.Text = dt.Rows[0]["col4"].ToString();
+                        txtinvbtch.Text = dt.Rows[0]["col8"].ToString();
+                        sg1.DataSource = dt;
+                        sg1.DataBind();
+                        fgen.EnableForm(this.Controls); disablectrl();
+                        vardate = DateTime.Now.ToString("dd/MM/yyyy");
+                        txtvchnum.Text = fgen.next_no(frm_qstr, frm_cocd, "select max(vchnum) as vch from scratch2 where type='AC' and vchdate " + DateRange + "", 6, "vch");
+                        txtvchdate.Text = vardate;
+
+                        set_val();
+                        break;
+                    case "Del":
+                        if (col1 == "") return;
+                        clearctrl();
+                        edmode.Value = col1;
+                        fgen.msg("-", "CMSG", "Are You Sure!! You Want to Delete");
+                        hffield.Value = "D";
+                        break;
+                    case "Edit":
+                        if (col1 == "") return;
+                        dt = new DataTable();
+                        dt = fgen.getdata(frm_qstr, frm_cocd, "Select distinct a.branchcd||a.type||trim(a.vchnum)||to_char(a.vchdate,'dd/mm/yyyy') as fstr, a.vchnum as vchnum,to_char(a.vchdate,'dd/mm/yyyy') as vchdate,a.col5 AS pono ,a.col6 AS podate ,b.aname ,a.acode ,c.iname ,a.icode ,a.srno,a.COL1 as app,a.COL2,a.COL3,a.COL4,a.REMARKS as rmk,a.ent_by,to_char(a.ent_dt,'dd/mm/yyyy') as ent_Dt,a.col13,a.col24,a.col25,a.col22,a.col23,a.col15,a.col16,a.col17,a.col18,a.col19,a.col27,a.col28,a.col20 from scratch2 a ,famst b,item c where trim(a.acodE)=trim(b.acodE) and trim(a.icodE)=trim(C.icodE) and a.branchcd||a.type||trim(A.vchnum)||to_char(a.vchdate,'dd/mm/yyyy')||trim(a.acode)||trim(a.icode)='" + col1 + "' order by a.srno");
+                        if (dt.Rows.Count <= 0) return;
+                        txtvchnum.Text = dt.Rows[0]["vchnum"].ToString(); txtvchdate.Text = dt.Rows[0]["vchdate"].ToString();
+                        txtcvchnum.Text = dt.Rows[0]["col22"].ToString(); txtcvchdate.Text = dt.Rows[0]["col23"].ToString();
+                        txtinvno.Text = dt.Rows[0]["pono"].ToString(); txtinvdate.Text = dt.Rows[0]["podate"].ToString();
+                        txtacode.Text = dt.Rows[0]["acode"].ToString(); txtaname.Text = dt.Rows[0]["aname"].ToString();
+                        txtsacode.Text = dt.Rows[0]["acode"].ToString(); txtsaname.Text = dt.Rows[0]["aname"].ToString();
+                        txticode.Text = dt.Rows[0]["icode"].ToString(); txtiname.Text = dt.Rows[0]["iname"].ToString();
+                        txtsicode.Text = dt.Rows[0]["icode"].ToString(); txtsiname.Text = dt.Rows[0]["iname"].ToString();
+                        txtrmk.Text = dt.Rows[0]["col13"].ToString(); txtntrcmpln.Text = dt.Rows[0]["col3"].ToString();
+                        ViewState["entby"] = dt.Rows[0]["ent_by"].ToString(); ViewState["entdt"] = dt.Rows[0]["ent_dt"].ToString();
+                        txtent_by.Text = dt.Rows[0]["col24"].ToString(); txtent_dt.Text = dt.Rows[0]["col25"].ToString();
+                        ddntrofcmlnt.Text = dt.Rows[0]["col2"].ToString(); dddivisioncmltn.Text = dt.Rows[0]["col4"].ToString();
+                        txtrply.Text = dt.Rows[0]["col15"].ToString(); txtcorrective.Text = dt.Rows[0]["col16"].ToString();
+                        txtpreventive.Text = dt.Rows[0]["col17"].ToString(); txtfact.Text = dt.Rows[0]["col18"].ToString();
+                        txtInform.Text = dt.Rows[0]["col20"].ToString();
+                        dd1.SelectedItem.Text = dt.Rows[0]["col19"].ToString().Trim(); ViewState["fstr"] = dt.Rows[0]["fstr"].ToString().Trim();
+
+                        txtCost.Text = dt.Rows[0]["col27"].ToString().Trim();
+                        txtPerson.Text = dt.Rows[0]["col28"].ToString().Trim();
+
+                        sg1.DataSource = dt;
+                        sg1.DataBind();
+                        fgen.EnableForm(this.Controls); disablectrl();
+                        edmode.Value = "Y";
+                        break;
+                    case "Print":
+                        SQuery = "select d.*,a.col15 as linedetails,A.col16 as actiontaken,a.col17 AS correctiveaction,a.col18 as factfinding,a.col19 as tktstatus,a.ent_by as screntby,a.ent_Dt as screntdt,b.aname,b.addr1 as paddr1,b.addr2 as paddr2,c.iname,c.cpartno from scratch d,famst b,item c,scratch2 a where A.branchcd||trim(A.col22)||trim(A.col23)||trim(A.acode)||trim(a.icode)=trim(D.branchcd)||trim(d.vchnum)||to_char(d.vchdate,'dd/mm/yyyy')||trim(D.acode)||trim(d.icode) and trim(a.acode)=trim(b.acodE) and trim(d.acode)=trim(b.acode) and trim(a.icode)=trim(c.icodE) and a.branchcd||a.type||trim(A.vchnum)||to_char(a.vchdate,'dd/mm/yyyy')||trim(a.acode)||trim(a.icode)='" + col1 + "' and d.type='CC' order by a.srno";
+                        if (frm_cocd == "SRIS") fgen.Print_Report(frm_cocd, frm_qstr, frm_mbr, SQuery, "action_tkn", "action_tkn_sris");
+                        else fgen.Print_Report(frm_cocd, frm_qstr, frm_mbr, SQuery, "action_tkn", "action_tkn");
+                        break;
+                }
+            }
+        }
+    }
+    protected void btnhideF_s_Click(object sender, EventArgs e)
+    {
+        vardate = DateTime.Now.ToString("dd/MM/yyyy");
+        col1 = "";
+        col1 = Request.Cookies["REPLY"].Value.ToString().Trim();
+        if (col1 == "Y")
+        {
+            if (edmode.Value == "Y") fgen.execute_cmd(frm_qstr, frm_cocd, "update scratch2 set branchcd='DD' where branchcd||type||trim(vchnum)||to_char(vchdate,'dd/mm/yyyy')='" + ViewState["fstr"].ToString().Trim() + "'");
+
+            DataSet oDS = new DataSet();
+            oDS = fgen.fill_schema(frm_qstr, frm_cocd, "scratch2");
+
+            if (edmode.Value == "Y") vchnum = txtvchnum.Text.Trim();
+            else vchnum = fgen.next_no(frm_qstr, frm_cocd, "select max(vchnum) as vch from scratch2 where branchcd='" + frm_mbr + "' AND TYPE='AC' and vchdate " + DateRange + "", 6, "vch");
+
+            foreach (GridViewRow r1 in sg1.Rows)
+            {
+                oporow = oDS.Tables[0].NewRow();
+                oporow["BRANCHCD"] = frm_mbr;
+                oporow["TYPE"] = "AC";
+                oporow["vchnum"] = vchnum;
+                oporow["vchdate"] = txtvchdate.Text.Trim();
+                if (txtrply.Text.Trim().Length > 500) oporow["col15"] = txtrply.Text.Trim().Substring(0, 499).ToUpper();
+                else oporow["col15"] = txtrply.Text.Trim().ToUpper();
+                if (txtcorrective.Text.Trim().Length > 500) oporow["col16"] = txtcorrective.Text.Trim().Substring(0, 499).ToUpper();
+                else oporow["col16"] = txtcorrective.Text.Trim().ToUpper();
+                if (txtpreventive.Text.Trim().Length > 500) oporow["col17"] = txtpreventive.Text.Trim().Substring(0, 499).ToUpper();
+                else oporow["col17"] = txtpreventive.Text.Trim().ToUpper();
+                if (txtfact.Text.Trim().Length > 500) oporow["col18"] = txtfact.Text.Trim().Substring(0, 499).ToUpper();
+                else oporow["col18"] = txtfact.Text.Trim().ToUpper();
+
+                if (txtInform.Text.Trim().Length > 170) oporow["col20"] = txtInform.Text.Trim().Substring(0, 170).ToUpper();
+                else oporow["col20"] = txtInform.Text.Trim().ToUpper();
+
+                oporow["col19"] = dd1.SelectedItem.Text.Trim().ToString();
+
+                //******************************************
+                oporow["col5"] = txtinvno.Text.Trim();
+                oporow["col6"] = txtinvdate.Text.Trim();
+                oporow["col22"] = txtcvchnum.Text.Trim();
+                oporow["col23"] = txtcvchdate.Text.Trim();
+                oporow["col24"] = txtent_by.Text.Trim();
+                oporow["col25"] = txtent_dt.Text.Trim();
+                oporow["acode"] = txtacode.Text.Trim();
+                oporow["icode"] = txticode.Text.Trim();
+                oporow["srno"] = r1.RowIndex + 1;
+                oporow["COL1"] = r1.Cells[1].Text.Trim();
+                oporow["COL2"] = ddntrofcmlnt.Text.ToUpper();
+                oporow["COL3"] = txtntrcmpln.Text.Trim().ToUpper();
+                oporow["COL4"] = dddivisioncmltn.Text.ToUpper();
+                oporow["remarks"] = ((TextBox)r1.FindControl("txtrmk")).Text.Trim().ToUpper();
+                oporow["col13"] = txtrmk.Text.Trim().ToUpper();
+
+                oporow["col27"] = fgen.make_double(txtCost.Text.Trim());
+                oporow["col28"] = txtPerson.Text.Trim();
+
+                if (dd1.SelectedItem.Text.Trim().ToString() == "Closed")
+                    fgen.execute_cmd(frm_qstr, frm_cocd, "Update scratch set chk_by='" + frm_uname + "' where branchcd||type||trim(vchnum)||to_char(vchdate,'dd/mm/yyyy')='" + frm_mbr + "CC" + txtcvchnum.Text.Trim() + txtcvchdate.Text.Trim() + "'");
+
+                if (edmode.Value == "Y")
+                {
+                    oporow["eNt_by"] = ViewState["entby"].ToString();
+                    oporow["eNt_dt"] = ViewState["entdt"];
+                    oporow["edt_by"] = frm_uname;
+                    oporow["edt_dt"] = vardate;
+                }
+                else
+                {
+                    oporow["eNt_by"] = frm_uname;
+                    oporow["eNt_dt"] = vardate;
+                    oporow["edt_by"] = "-";
+                    oporow["eDt_dt"] = vardate;
+                }
+                oDS.Tables[0].Rows.Add(oporow);
+            }
+            fgen.save_data(frm_qstr, frm_cocd, oDS, "scratch2");
+
+            if (edmode.Value == "Y") { fgen.msg("-", "AMSG", "Data Updated Successfully"); fgen.execute_cmd(frm_qstr, frm_cocd, "delete from scratch2 where branchcd='DD' and type='AC' and type||trim(vchnum)||to_Char(vchdate,'dd/mm/yyyy')='" + ViewState["fstr"].ToString().Substring(2, 18) + "'"); }
+            else { fgen.msg("-", "AMSG", "Data Saved Successfully"); }
+            fgen.ResetForm(this.Controls); fgen.DisableForm(this.Controls); enablectrl(); clearctrl();
+            sg1.DataSource = null;
+            sg1.DataBind();
+        }
+    }
+}

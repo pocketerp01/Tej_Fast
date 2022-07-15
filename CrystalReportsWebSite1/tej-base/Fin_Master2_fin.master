@@ -1,0 +1,138 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="fin_base_Fin_Master2" CodeFile="Fin_Master2_fin.master.cs" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link rel="shortcut icon" type="image/ico" href="images/finsys _small.jpg" />
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+
+    <link rel="stylesheet" href="../tej-base/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../tej-base/dist/css/AdminLTE.min.css" />
+    <link rel="stylesheet" href="../tej-base/dist/css/skins/_all-skins.min.css" />
+
+    <script src="../tej-base/Scripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="../tej-base/Scripts/jquery.colorbox-min.js" type="text/javascript"></script>
+    <script src="../tej-base/Scripts/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="../tej-base/Scripts/temp.js" type="text/javascript"></script>
+
+    <link href="../tej-base/Scripts/colorbox.css" type="text/css" rel="Stylesheet" />
+    <link href="../tej-base/css/GridviewScroll.css" type="text/css" rel="Stylesheet" />
+    <link href="../tej-base/css/GridviewScroll2.css" type="text/css" rel="Stylesheet" />
+    <style>
+        .skin-blue .main-header .navbar {
+    background-image: linear-gradient(to left,#0d0e0e,#dd397f);
+}
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body id="body1" runat="server" class="sidebar-mini sidebar-collapse skin-blue">
+    <div class="wrapper">
+        <header class="main-header bottomShadow" style="background-color: #1897c0">
+            <nav class="navbar navbar-static-top" role="navigation" id="wbheader">
+                <span class="sr-only">Toggle navigation</span>
+                <div class="navbar-custom-menu" style="float: left">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <img id="imglogo" class="logo_finsys" runat="server" alt="Tejaxo" src="~/tej-base/images/finsysblue.jpg" title="Click to Refresh" onclick="refresh()" style="height: 50px; width: 120px; cursor: pointer;" />
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="hidden-xs">
+                                    <span id="welc">Welcome to</span>
+                                    <asp:Label ID="lblwelcome" runat="server"></asp:Label>
+                                    <b>
+                                        <asp:Label ID="lblbcode" runat="server"></asp:Label></b>
+                                    <asp:Label ID="lblBrHeader" runat="server"></asp:Label>
+                                    <b id="branch">Branch :</b> &nbsp;
+                                    <asp:Label ID="lblbrname" runat="server"></asp:Label>
+                                    (<asp:Label ID="lblbrcode1" runat="server"></asp:Label>)
+                                    <b id="year">Year :</b> &nbsp;
+                                    <asp:Label ID="lblyearS" runat="server"></asp:Label>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <asp:Image ID="imgprofile" runat="server" ImageUrl="~/tej-base/images/USER1.jpg" CssClass="user-image" />
+                                <asp:Label ID="lblusername" runat="server" Text="Username" CssClass="hidden-xs"></asp:Label>
+                            </a>
+                        </li>
+                        <li class="dropdown messages-menu"></li>
+                    </ul>
+                </div>
+            </nav>
+
+        </header>
+        <form id="form2" runat="server" autocomplete="off">
+            <asp:HiddenField ID="hfWindowSize" runat="server" />
+            <aside class="main-sidebar">
+                <section>
+                    <div class="sidebar-form">
+                        <div class="input-group">
+                        </div>
+                    </div>
+                </section>
+            </aside>
+            <asp:ScriptManager ID="scr" runat="server"></asp:ScriptManager>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </form>
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Build Date: </b>
+                <asp:Label ID="lblbuilddt" runat="server"></asp:Label>
+                &nbsp;&nbsp;
+                <b>Server IP: </b>
+                <asp:Label ID="lblserverIP" runat="server"></asp:Label>
+                <span style="font-size: xx-small; float: right">[ F11 for Full Screen ]</span>
+                <br />
+
+            </div>
+            <strong>
+                <label id="lblHelpLine" runat="server"></label>
+                <a id="helpLin" runat="server" ></a>
+            </strong>
+        </footer>
+        <div class="control-sidebar-bg"></div>
+    </div>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="../tej-base/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        //$(document).ready(function () { $("input").not($(":image")).keypress(function (e) { if (13 == e.keyCode && (iname = $(this).val(), "Submit" !== iname)) { var t = $(this).parents("form:eq(0),body").find("button,input,textarea,select,image"), n = t.index(this); return n > -1 && n + 1 < t.length && (t.eq(n + 1).focus(), t.eq(n + 1).select()), !1 } }), reSizeFn(), $(window).on("beforeunload", function () { var e = document.getElementsByTagName("INPUT"); for (var t in e) "button" != e[t].type && "submit" != e[t].type && "select" != e[t].type && "image" != e[t].type || (e[t].disabled = !0, setTimeout(function () { $find("mpeLoading").show() }, 3e3)); var n = document.getElementsByTagName("button"); for (var t in n) n[t].disabled = !0, setTimeout(function () { $find("mpeLoading").show() }, 3e3); n = null, n = document.getElementById("button"); for (var t in n) n[t].disabled = !0, setTimeout(function () { $find("mpeLoading").show() }, 3e3) }) });
+        $(document).ready(function () {
+            $("#hfWindowSize").val($(window).width());
+            $("input").not($(":image")).keypress(function (evt) {
+                if (evt.keyCode == 13) {
+
+                    iname = $(this).val();
+                    if (iname !== 'Submit') {
+                        var fields = $(this).parents('form:eq(0),body').find('button,input,textarea,select,image');
+                        var index = fields.index(this);
+                        if (index > -1 && (index + 1) < fields.length) {
+                            fields.eq(index + 1).focus();
+                            fields.eq(index + 1).select();
+                        }
+                        return false;
+                    }
+                }
+            });
+        });
+        function checkTextValIsValid(myTkN) {
+            if (myTkN.value == "" || myTkN.value == "-")
+                myTkN.style.border = "1px solid red";
+            else myTkN.style.border = "";
+        }
+    </script>
+</body>
+</html>
