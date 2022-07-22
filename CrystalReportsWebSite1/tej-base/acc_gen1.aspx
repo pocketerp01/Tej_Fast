@@ -20,9 +20,8 @@
                 var ObjVal = PANNo;
                 var panPattern = /^([a-zA-Z]{5})(\d{4})([a-zA-Z]{1})$/;
                 var matchArray = ObjVal.match(panPattern);
-
                 if (matchArray == null) {
-                    alert('Hello User! You have inputted  a wrong PAN number . Please check it once. ');
+                    alert('Hello User! You have inputted a wrong PAN number . Please check it once. ');
                     return false;
                 }
 

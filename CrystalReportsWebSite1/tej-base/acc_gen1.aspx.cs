@@ -10,12 +10,11 @@ using System.Web.UI.WebControls.WebParts;
 public partial class fin_acct_web_acc_gen1 : System.Web.UI.Page
 {
     string btnval, SQuery, col1, col2, col3, vardate, fromdt, todt, typePopup = "N";
-    DataTable dt, dt2, dt3, dt4; DataRow oporow; DataSet oDS; DataRow oporow2; DataSet oDS2; DataRow oporow3; DataSet oDS3; DataRow oporow4; DataSet oDS4; DataRow oporow5; DataSet oDS5;
+    DataTable dt; DataRow oporow; DataSet oDS;  DataRow oporow5; DataSet oDS5;
     int i = 0, z = 0;
 
 
     DataTable sg1_dt; DataRow sg1_dr;
-
     DataTable sg3_dt; DataRow sg3_dr;
     DataTable sg4_dt; DataRow sg4_dr;
 
